@@ -5,4 +5,52 @@
     namespace:名称空间
 -->
 <mapper namespace="com.koreait.coffee.model.mapper.OrderMapper">
+    <insert id="addOrders">
+        insert into orders
+        (userid , status , order_time , pay_method , pay_status ,
+        end_time, amount, cancel_reason, rejection_reason , cancel_time , point )
+        values (#{userId} , #{status} , #{orderTime} , #{payMethod} , #{payStatus} ,
+        #{endTime} , #{amount}, #{cancelReason}, #{rejectionReason} , #{cancelTime} , #{point});
+    </insert>
+    <update id="updateOrders">
+        update orders
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="order_time != null">
+                order_time = #{orderTime},
+            </if>
+            <if test="pay_method != null">
+                order_time = #{orderTime},
+            </if>
+            <if test="pay_status != null">
+                pay_status = #{payStatus},
+            </if>
+            <if test="end_time != null">
+                end_time = #{endTime},
+            </if>
+            <if test="amount != null">
+                amount = #{amount},
+            </if>
+            <if test="cancel_reason != null">
+                cancel_reason = #{cancelReason},
+            </if>
+            <if test="point != null">
+                point = #{ point},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteOrders" >
+        delete from orders where id = #{id}
+    </delete>
+
+    <select id="getOrderAmount">
+            select sum(amount) from shopping_cart
+    </select>
 </mapper>

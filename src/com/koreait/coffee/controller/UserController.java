@@ -13,9 +13,7 @@ public class UserController {
         mapper.insertUser(user);
     }
 
-    public void updateUserByPhoneNumber(User user) {
-        mapper.updateUserByPhoneNumber(user);
-    }
+    public void updateUserByPhoneNumber(User user) {mapper.updateUserByPhoneNumber(user);}
 
     public User getUserByPhoneNumber(String phoneNumber){return mapper.getUserByPhoneNumber(phoneNumber);}
 

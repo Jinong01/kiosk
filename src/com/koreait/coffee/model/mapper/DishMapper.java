@@ -9,6 +9,7 @@ public interface DishMapper {
     @Select("select * from dish")
     List<Dish> getAllDishes();
 
+    // 키오스크에서 선택한 카테고리의 음식들을 보여주기
     @Select("select * from dish where category_id = #{categoryId}")
     List<Dish> getDishesByCategoryId(int categoryId);
 

@@ -33,7 +33,13 @@
         </set>
         where dish_id = #{dishId};
     </update>
-    <select id="getAmount" parameterType="Double">
-        select SUM(d.price * s.number) from dish d,shopping_cart s where  d.id  = s.dish_id;
+    <update id="updateAmount" > <!--shopping_cart 에 담은 dish 별로 가격 연산-->
+        UPDATE shopping_cart s
+        JOIN dish d ON s.dish_id = d.id
+        SET s.amount = CAST((d.price * s.number) AS DOUBLE)
+        where s.id>0;
+    </update>
+    <select id="getShoppingCart">
+            select d.name d.temperature , d.shot , s.number,s.amount from dish_flavor d , shopping_cart s where d.id = s.dish_id;
     </select>
 </mapper>

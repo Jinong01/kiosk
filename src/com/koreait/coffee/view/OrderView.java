@@ -15,7 +15,7 @@ public class OrderView {
     public Temperature temperatureView(){
         while (true) {
             System.out.println("1.아이스   2.핫" );
-            System.out.print("번호를 입력하세요 :");
+            System.out.println("번호를 입력하세요 :");
             int chooseTemp = 0;
             try {
                 chooseTemp = sc.nextInt();
@@ -33,8 +33,7 @@ public class OrderView {
                 }
             };
         }
-
-        }
+    }
 
     /**
      * 샷 선택메소드
@@ -43,7 +42,7 @@ public class OrderView {
     public Shot shotView(){
         while (true) {
             System.out.println("1.연하게   2.1샷추가   3.2샷추가");
-            System.out.print("번호를 입력하세요 :");
+            System.out.println("번호를 입력하세요 :");
             int chooseShot = 0;
             try {
                 chooseShot = sc.nextInt();
@@ -62,6 +61,5 @@ public class OrderView {
                 }
             };
         }
-        }
-
     }
+}

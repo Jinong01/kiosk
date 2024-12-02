@@ -11,4 +11,7 @@
     <select id="getDishFlavorByDishId">
         select * from dish_flavor where dish_id = #{id}
     </select>
+    <select id="allDishFlavor">
+        select * from dish_flavor;
+    </select>
 </mapper>

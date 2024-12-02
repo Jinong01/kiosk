@@ -21,12 +21,12 @@ public Scanner sc = new Scanner(System.in);
                 case 1:
                     System.out.println("핸드폰번호를 입력하세요:");
                     String phoneNumber = sc.next();
-                    User user = new User();
-                    user.setPhoneNumber(phoneNumber);
-                    return;
-                case 2:
+
                     return;
 
+                case 2:
+                    User user1 = new User();
+                    return;
             }
 
         }

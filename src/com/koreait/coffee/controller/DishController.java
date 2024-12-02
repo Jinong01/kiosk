@@ -2,7 +2,9 @@ package com.koreait.coffee.controller;
 
 import com.koreait.coffee.config.MysqlConfig;
 import com.koreait.coffee.model.dto.Dish;
-import com.koreait.coffee.model.mapper.CategoryMapper;
+import com.koreait.coffee.model.dto.DishFlavor;
+import com.koreait.coffee.model.dto.Shot;
+import com.koreait.coffee.model.dto.Temperature;
 import com.koreait.coffee.model.mapper.DishFlavorMapper;
 import com.koreait.coffee.model.mapper.DishMapper;
 import org.apache.ibatis.session.SqlSession;
@@ -35,8 +37,15 @@ public class DishController {
      *
      * @param dish
      */
-    public void addDishFlavor(Dish dish){
+    public void addDishFlavor(Dish dish , Temperature temperature , Shot shot){
+        dish.setShot(shot);
+        dish.setTemperature(temperature);
         dishFlavorMapper.addDishFlavor(dish);
+    }
+
+
+    public void deleteAllDishFlavor(){
+        dishFlavorMapper.deleteAllDishFlavor();
     }
 
     /**
@@ -45,6 +54,7 @@ public class DishController {
      * @return
      */
     public Dish getDishById(int dishId){
+
         return mapper.getDishById(dishId);
     }
 }
