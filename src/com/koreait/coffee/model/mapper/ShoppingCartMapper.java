@@ -1,9 +1,12 @@
 package com.koreait.coffee.model.mapper;
 
+import com.koreait.coffee.model.dto.DishFlavor;
 import com.koreait.coffee.model.dto.ShoppingCart;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
 import java.util.List;
+import java.util.Map;
+
 
 public interface ShoppingCartMapper {
 
@@ -24,9 +27,6 @@ public interface ShoppingCartMapper {
 
     // shopping_cart 에 음식가격 x 수량한 가격 대입
     void updateAmount(Integer ShoppingCartId,Integer dishId);
-
-    // shopping_cart 에 담긴 음식이름 , 수량 , 같은 음식 의 가격합산 호출
-    List<ShoppingCart> getShoppingCart();
 
     // shopping_cart 의 id 가 0보다 큰 값 삭제 = 일괄 장바구니 삭제
     @Delete("delete from shopping_cart where id>0")

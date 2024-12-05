@@ -17,7 +17,7 @@ public class MainView {
             System.out.println("        GH Coffee        ");
             System.out.println("=========================");
             System.out.println("  1.매장식사    2.포장주문  ");
-            System.out.print("번호를 입력하세요 :");
+            System.out.println("번호를 입력하세요 :");
             int choose = 0;
             try {
                 choose = sc.nextInt();

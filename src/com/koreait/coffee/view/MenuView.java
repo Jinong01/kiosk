@@ -6,7 +6,9 @@ import com.koreait.coffee.controller.OrderController;
 import com.koreait.coffee.controller.ShoppingCartController;
 import com.koreait.coffee.model.dto.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class MenuView {
@@ -17,6 +19,7 @@ public class MenuView {
     public DishController dishController = new DishController();
     public PayView payView = new PayView();
     public OrderController orderController = new OrderController();
+
     /**
      * 카테고리 보여주는 메소드
      * @param type
@@ -42,7 +45,7 @@ public class MenuView {
 
             switch (choose){
 
-            case 1 ,2 , 3, 4, 5, 6:
+            case 1 ,2 , 3, 4 :
                 menuView(choose);
                 break;
             default:
@@ -67,6 +70,7 @@ public class MenuView {
             for (Dish dish : dishesByCategoryId) {
                 System.out.println(dish.getId() + ":" + dish.getName());
             }
+            System.out.println("99:장바구니");
             System.out.println("100:뒤로가기");
             System.out.println("0:결제하기");
             System.out.println("번호를 입력하세요 :");
@@ -77,28 +81,45 @@ public class MenuView {
                     Shot shot = orderView.shotView();                      // 커피 샷 설정
                     Dish dish = dishController.getDishById(choose);        // 선택한 choose 값의 dishId 대입
                     dishController.addDishFlavor(dish,temperature,shot);   // 설정한 온도,샷,dishId로 주문할 커피 완성
-                    shoppingCartController.add(dish.getId());              // 완성한 커피를 장바구니에 담기
+                    shoppingCartController.add(dish);              // 완성한 커피를 장바구니에 담기
                     break;
                 case 5,6,7,8:
                     Temperature temperature1 = orderView.temperatureView();// 온도 설정 , 샷을 설정할 필요 없는 메뉴
                     Dish dish1 = dishController.getDishById(choose);
                     dishController.addDishFlavor(dish1,temperature1,Shot.NORMAL); // 커피와 같지만 샷 설정 안해서 노말
-                    shoppingCartController.add(dish1.getId());                    // 장바구니에 담기
+                    shoppingCartController.add(dish1);                    // 장바구니에 담기
                 case 9,10,11,12:
                     Dish dish2 = dishController.getDishById(choose);
                     dishController.addDishFlavor(dish2,Temperature.ICE,Shot.NORMAL); // 온도 고정 , 샷은 없음
-                    shoppingCartController.add(dish2.getId());                       // 장바구니 담기
+                    shoppingCartController.add(dish2);                       // 장바구니 담기
                     break;
                 case 13,14,15,16:
                     Dish dish3 = dishController.getDishById(choose); // 디저트는 온도,샷 선택지가 없음
-                    shoppingCartController.add(dish3.getId());       // 장바구니 담기
+                    shoppingCartController.add(dish3);       // 장바구니 담기
                     break;
+                case 99:
+                    // 장바구니 출력
+                    List<DishFlavor> dishFlavors = dishController.dishFlavorMapper.allDishFlavor();
+                    List<ShoppingCart> shoppingCarts = shoppingCartController.getAllShoppingCart();
+                    if (shoppingCarts==null || dishFlavors == null) {
+                        System.out.println("장바구니가 비었습니다.");
+                    } else {
+                        System.out.printf("%-10s%-5s%-5s%-4s%-10s\n","이름","온도","샷","수량","가격");
+                        for (int i =0; i <= shoppingCarts.size()-1; i++){
+                            System.out.printf("%-10s%-5s%-5s%-4d%-10s\n",
+                                    dishFlavors.get(i).getName(),
+                                    dishFlavors.get(i).getTemperature(),
+                                    dishFlavors.get(i).getShot(),
+                                    shoppingCarts.get(i).getNumber(),
+                                    shoppingCarts.get(i).getAmount());
+                        }
+                    }
                 case 0:
-                    shoppingCartController.getShoppingCart();
-                    payView();
+                    if (shoppingCartController.getAllShoppingCart()==null || orderController.mapper.getOrderAmount()==null){
+                        System.out.println("선택한 음식이 없습니다.");
+                    } else {payView();}
                     return;
                 default:
-
                     return;
             }
         }
@@ -107,23 +128,24 @@ public class MenuView {
     public void payView(){
         while (true){
             double amount = orderController.getOrderAmount(); // 장바구니에 담긴 모든 음식의 가격을 불러오기
+            Double point = (amount / 10);                     // 총 가격의 10%를 포인트로
             System.out.println("총 금액 : " + amount+"원");
-            System.out.println("결제하시겠습니까? 1.OK   2.NO  *.뒤로 가기");
+            System.out.println("결제하시겠습니까? 1.OK   2.NO  0.처음화면으로");
             int choose = sc.nextInt();
             switch (choose){
                 case 1:
-                    payView.pointView();    // 결제 OK 후 포인트 적립 여부 창으로
+                    payView.pointView(point,amount);    // 결제 OK 후 포인트 적립 여부 창으로 , 계산 된 포인트와 총 가격 변수로
                     payView.paySuccess();   // 적립 여부 끝나면 결제 성공 창
                     payView.mainView();     // 결제성공 후 다시 메인 화면으로
                     return;
                 case 2:
                     return;                 // 결제안하고 다시 메뉴 선택하러
-                default:
+                case 0:
+                    payView.mainView();     // 선택사항 다 초기화 하고 처음화면으로
                     return;
             }
         }
     }
-
 }
 
 

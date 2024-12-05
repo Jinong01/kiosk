@@ -15,9 +15,9 @@ public class Order {
     private String cancelReason;
     private String rejectionReason;
     private LocalDateTime cancelTime;
-    private Integer point;
+    private Double point;
 
-    public Order(Integer id, Integer userId, Integer status, LocalDateTime orderTime, Integer payMethod, Integer payStatus, LocalDate endTime, Double amount, String cancelReason, String rejectionReason, LocalDateTime cancelTime, Integer point) {
+    public Order(Integer id, Integer userId, Integer status, LocalDateTime orderTime, Integer payMethod, Integer payStatus, LocalDate endTime, Double amount, String cancelReason, String rejectionReason, LocalDateTime cancelTime, Double point) {
         this.id = id;
         this.userId = userId;
         this.status = status;
@@ -32,11 +32,11 @@ public class Order {
         this.point = point;
     }
 
-    public Integer getPoint() {
+    public Double getPoint() {
         return point;
     }
 
-    public void setPoint(Integer point) {
+    public void setPoint(Double point) {
         this.point = point;
     }
 

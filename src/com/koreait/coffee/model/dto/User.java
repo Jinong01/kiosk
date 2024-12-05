@@ -4,7 +4,7 @@ public class User {
     private Integer id;
     private String name;
     private String phoneNumber;
-    private Integer point;
+    private double point;
     private Integer type;
 
     public User(Integer id, String name, String phoneNumber, Integer point, Integer type) {
@@ -42,11 +42,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public Integer getPoint() {
+    public Double getPoint() {
         return point;
     }
 
-    public void setPoint(Integer point) {
+    public void setPoint(Double point) {
         this.point = point;
     }
 

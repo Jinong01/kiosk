@@ -39,7 +39,4 @@
         SET s.amount = CAST((d.price * s.number) AS DOUBLE)
         where s.id>0;
     </update>
-    <select id="getShoppingCart">
-            select d.name d.temperature , d.shot , s.number,s.amount from dish_flavor d , shopping_cart s where d.id = s.dish_id;
-    </select>
 </mapper>

@@ -17,7 +17,7 @@ public class UserController {
 
     public User getUserByPhoneNumber(String phoneNumber){return mapper.getUserByPhoneNumber(phoneNumber);}
 
-    public void plusPoint(String phoneNumber , Integer point){
+    public void plusPoint(String phoneNumber , Double point){
         User user = getUserByPhoneNumber(phoneNumber);
         user.setPoint(user.getPoint()+point);
         updateUserByPhoneNumber(user);

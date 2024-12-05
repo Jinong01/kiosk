@@ -43,6 +43,8 @@ public class DishController {
         dishFlavorMapper.addDishFlavor(dish);
     }
 
+    public List<DishFlavor> allDishFlavor(){return dishFlavorMapper.allDishFlavor();}
+
 
     public void deleteAllDishFlavor(){
         dishFlavorMapper.deleteAllDishFlavor();
