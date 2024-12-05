@@ -2,14 +2,13 @@ package com.koreait.coffee.controller;
 
 import com.koreait.coffee.config.MysqlConfig;
 import com.koreait.coffee.model.dto.Dish;
-import com.koreait.coffee.model.dto.DishFlavor;
 import com.koreait.coffee.model.dto.ShoppingCart;
 import com.koreait.coffee.model.mapper.DishFlavorMapper;
 import com.koreait.coffee.model.mapper.ShoppingCartMapper;
 import org.apache.ibatis.session.SqlSession;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
+
 
 
 public class ShoppingCartController {
@@ -46,14 +45,13 @@ public class ShoppingCartController {
         mapper.deleteShoppingCartById(id);
     }
 
+    // 장바구니에 담긴 모든 음식의 가격 호출 = 결제할 금액
+    public Double getOrderAmount(){
+        return mapper.getOrderAmount();}
+
     public void deleteAllShoppingCart(){
         mapper.deleteAllShoppingCart();
     }
-
-    // 세팅하여 주문한 음식이름 / 수량 / 같은 음료 연산한 가격 보여주기
-////    public List<Map<DishFlavor , ShoppingCart>> getShoppingCart(List<DishFlavor> dishFlavors, List<ShoppingCart> shoppingCarts){
-//         return mapper.getShoppingCart();
-//    }
 
     public List<ShoppingCart> getAllShoppingCart(){
         return mapper.selectShoppingCart();

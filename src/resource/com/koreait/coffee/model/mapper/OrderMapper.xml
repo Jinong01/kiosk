@@ -50,7 +50,4 @@
         delete from orders where id = #{id}
     </delete>
 
-    <select id="getOrderAmount">
-            select sum(amount) from shopping_cart
-    </select>
 </mapper>

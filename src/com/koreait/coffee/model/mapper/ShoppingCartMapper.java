@@ -31,4 +31,7 @@ public interface ShoppingCartMapper {
     // shopping_cart 의 id 가 0보다 큰 값 삭제 = 일괄 장바구니 삭제
     @Delete("delete from shopping_cart where id>0")
     void deleteAllShoppingCart();
+
+    // 장바구니에 담긴 모든 음식의 총 가격 호출 = 결제할 금액
+    Double getOrderAmount();
 }

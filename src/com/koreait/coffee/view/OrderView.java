@@ -1,6 +1,5 @@
 package com.koreait.coffee.view;
 
-import com.koreait.coffee.model.dto.DishFlavor;
 import com.koreait.coffee.model.dto.Shot;
 import com.koreait.coffee.model.dto.Temperature;
 

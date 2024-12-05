@@ -39,6 +39,9 @@ public UserController userController = new UserController();
                     if (userController.getUserByPhoneNumber(phoneNumber1)==null){  // 등록된 회원이 없으면
                         System.out.println("동록되지 않은 회원입니다.");
                         break;
+                    } else if (userController.getUserByPhoneNumber(phoneNumber1).getPoint()==null)
+                    {
+                        System.out.println("사용가능한 포인트가 없습니다.");
                     } else {
                         System.out.println("사용가능한 포인트 : "+userController.getUserByPhoneNumber(phoneNumber1).getPoint()+"점");
                         System.out.println("사용할 포인트 : "); Double point1 = sc.nextDouble(); // 사용할 포인트 입력

@@ -5,10 +5,7 @@ import com.koreait.coffee.controller.DishController;
 import com.koreait.coffee.controller.OrderController;
 import com.koreait.coffee.controller.ShoppingCartController;
 import com.koreait.coffee.model.dto.*;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class MenuView {
@@ -99,9 +96,9 @@ public class MenuView {
                     break;
                 case 99:
                     // 장바구니 출력
-                    List<DishFlavor> dishFlavors = dishController.dishFlavorMapper.allDishFlavor();
-                    List<ShoppingCart> shoppingCarts = shoppingCartController.getAllShoppingCart();
-                    if (shoppingCarts==null || dishFlavors == null) {
+                    List<DishFlavor> dishFlavors = dishController.dishFlavorMapper.allDishFlavor(); // 세팅한 음식들 불러오기
+                    List<ShoppingCart> shoppingCarts = shoppingCartController.getAllShoppingCart(); // 장바구니에 담은 것들 불러오기
+                    if (shoppingCarts==null || dishFlavors == null) { // 장바구니가 세팅한 음식이 없으면
                         System.out.println("장바구니가 비었습니다.");
                     } else {
                         System.out.printf("%-10s%-5s%-5s%-4s%-10s\n","이름","온도","샷","수량","가격");
@@ -114,8 +111,10 @@ public class MenuView {
                                     shoppingCarts.get(i).getAmount());
                         }
                     }
+                    return;
                 case 0:
-                    if (shoppingCartController.getAllShoppingCart()==null || orderController.mapper.getOrderAmount()==null){
+                    if (shoppingCartController.getAllShoppingCart()==null || shoppingCartController.getOrderAmount()==null){
+                        // 장바구니가 비었거나 선택한 음식의 총 금액의 값이 없으면
                         System.out.println("선택한 음식이 없습니다.");
                     } else {payView();}
                     return;
@@ -127,7 +126,7 @@ public class MenuView {
 
     public void payView(){
         while (true){
-            double amount = orderController.getOrderAmount(); // 장바구니에 담긴 모든 음식의 가격을 불러오기
+            Double amount = shoppingCartController.getOrderAmount(); // 장바구니에 담긴 모든 음식의 가격을 불러오기
             Double point = (amount / 10);                     // 총 가격의 10%를 포인트로
             System.out.println("총 금액 : " + amount+"원");
             System.out.println("결제하시겠습니까? 1.OK   2.NO  0.처음화면으로");

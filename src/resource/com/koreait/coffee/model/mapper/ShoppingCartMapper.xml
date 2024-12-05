@@ -39,4 +39,9 @@
         SET s.amount = CAST((d.price * s.number) AS DOUBLE)
         where s.id>0;
     </update>
+
+    <select id="getOrderAmount" resultType="double">
+        select sum(amount) from shopping_cart
+    </select>
+
 </mapper>
