@@ -1,5 +1,6 @@
 package com.koreait.coffee.view;
 
+
 import com.koreait.coffee.model.dto.Shot;
 import com.koreait.coffee.model.dto.Temperature;
 
@@ -7,6 +8,7 @@ import java.util.Scanner;
 
 public class OrderView {
     public Scanner sc = new Scanner(System.in);
+
     /**
      * 온도 선택하는기능
      * @return

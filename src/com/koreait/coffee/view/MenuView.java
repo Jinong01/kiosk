@@ -72,7 +72,7 @@ public class MenuView {
             int choose = sc.nextInt();
             switch (choose){
                 case 1, 2, 3, 4 :
-                    Temperature temperature = orderView.temperatureView(); // 커피 온도 설정
+                    Temperature temperature = orderView.temperatureView();// 커피 온도 설정
                     Shot shot = orderView.shotView();                      // 커피 샷 설정
                     Dish dish = dishController.getDishById(choose);        // 선택한 choose 값의 dishId 대입
                     dishController.addDishFlavor(dish,temperature,shot);   // 설정한 온도,샷,dishId로 주문할 커피 완성
@@ -144,5 +144,6 @@ public class MenuView {
         }
     }
 }
+
 
 
