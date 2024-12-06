@@ -45,7 +45,7 @@ public UserController userController = new UserController();
                     } else {
                         System.out.println("사용가능한 포인트 : "+userController.getUserByPhoneNumber(phoneNumber1).getPoint()+"점");
                         System.out.println("사용할 포인트 : "); Double point1 = sc.nextDouble(); // 사용할 포인트 입력
-                        Double amount1 = amount-point1;                                        // 총 금액 - 사용할 포인트
+                        double amount1 = amount-point1;                                        // 총 금액 - 사용할 포인트
                         System.out.println("포인트 사용 후 결제 금액:"+amount1);
                         userController.plusPoint(phoneNumber1,-point1);                        // 갖고 있던 포인트에 사용할 포인트 차감
                     }

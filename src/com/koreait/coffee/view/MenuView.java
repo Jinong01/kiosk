@@ -2,7 +2,6 @@ package com.koreait.coffee.view;
 
 import com.koreait.coffee.controller.CategoryController;
 import com.koreait.coffee.controller.DishController;
-import com.koreait.coffee.controller.OrderController;
 import com.koreait.coffee.controller.ShoppingCartController;
 import com.koreait.coffee.model.dto.*;
 import java.util.List;
@@ -15,7 +14,6 @@ public class MenuView {
     public CategoryController categoryController = new CategoryController();
     public DishController dishController = new DishController();
     public PayView payView = new PayView();
-    public OrderController orderController = new OrderController();
 
     /**
      * 카테고리 보여주는 메소드
@@ -78,7 +76,7 @@ public class MenuView {
                     Shot shot = orderView.shotView();                      // 커피 샷 설정
                     Dish dish = dishController.getDishById(choose);        // 선택한 choose 값의 dishId 대입
                     dishController.addDishFlavor(dish,temperature,shot);   // 설정한 온도,샷,dishId로 주문할 커피 완성
-                    shoppingCartController.add(dish);              // 완성한 커피를 장바구니에 담기
+                    shoppingCartController.add(dish);                      // 완성한 커피를 장바구니에 담기
                     break;
                 case 5,6,7,8:
                     Temperature temperature1 = orderView.temperatureView();// 온도 설정 , 샷을 설정할 필요 없는 메뉴

@@ -15,4 +15,5 @@ public interface DishMapper {
 
     @Select("select * from dish where id = #{dishId}")
     Dish getDishById(int dishId);
+
 }
